@@ -1,16 +1,14 @@
-1.美式\欧氏，看涨\看跌，期权，输入当前股价，输出相应价格。
-2.有详尽注释
-3.几大板块
-二、 满分项目分解：模块化任务框架
+
+项目分解：
+
 模块一：核心引擎模块 (engine.py)
 这是整个项目的基石，负责所有底层的数学计算。
 基础类定义： 定义 Option (期权基类)、EuropeanOption、AmericanOption 等数据结构。
-BSM 解析解引擎： 实现 Black-Scholes-Merton 公式。虽然只能算欧式，但它是极为重要的基准线（Benchmark）。需要用到 scipy.stats.norm 计算正态分布累计概率。
+BSM 解析解引擎： 实现 Black-Scholes-Merton 公式。
 CRR 二叉树引擎： 实现上一版提供的向量化二叉树算法，同时支持欧式和美式。
 
 
 模块二：数据可视化模块 (visualization.py)
-“华丽”往往体现在直观的图表上。使用 matplotlib 或 seaborn 实现以下三张图：
 1.	收敛性图 (Convergence Plot) -  X 轴是二叉树步数 N（比如从 10 到 500），Y 轴是欧式期权价格。画出随着 N 增大，二叉树价格像波浪一样收敛于 BSM 公式给出的直线。
 2.	提前行权边界图 (Early Exercise Boundary) - 针对美式看跌期权，画出随着时间流逝，股价跌破哪条线时应该立即行权。这是 Shreve 书中高阶章节的内容。以美式期权和永久美式期权作为对比。
 3.	收益与价值对比图 (Payoff vs. Option Value)： 画出期权在当前时刻的价值曲线，以及到期时的折线（Payoff），展示时间价值（Time Value）。
